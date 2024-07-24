@@ -1,0 +1,85 @@
+
+:root {
+    --primary-color: #043972;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    padding-top: 70px !important;
+}
+
+.btn{
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+.btn:hover {
+    background-color: #0c4b9a;
+    color: white;
+}
+
+.navbar{
+    background-color: var(--primary-color);
+    color: white !important;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+
+}
+.navbar-brand{
+    font-family: 'Staatliches', cursive;
+    font-size: 1.5rem;
+}
+#map {
+    height: 500px;
+    width: 100%;
+}
+.content {
+    padding: 20px;
+}
+.sidebar {
+    height: 500px;
+    overflow-y: scroll;
+    background-color: #f8f9fa;
+    padding: 15px;
+}
+
+.map-container {
+    height: 500px;
+}
+#marker-list{
+    font-size: medium;
+}
+#marker-list li {
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+#marker-list li:hover {
+    background-color: #f1f1f1;
+}
+.map-wraper {
+    padding-left: 0;
+}
+.sidebar-wrapper {
+    padding-right: 0 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        height: auto;
+        max-height: 200px;
+    }
+    .sidebar-wrapper {
+        padding: 0 !important;
+    }
+    .map-wraper {
+        padding: 0 15px !important;
+    }
+}

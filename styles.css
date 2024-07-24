@@ -3,6 +3,11 @@
     --primary-color: #043972;
 }
 
+@font-face {
+    font-family: 'Staatliches';
+    src: url('assets/fonts/Staatliches/Staatliches-Regular.ttf') format('truetype');
+}
+
 html {
     scroll-behavior: smooth;
 }

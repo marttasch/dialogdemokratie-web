@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialogdemokratie</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+        </style>
+
+        <style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+</style>
+    
+    
+    <style>
+        .navbar-brand{
+            font-family: 'Staatliches', cursive;
+            font-size: 1.5rem;
+        }
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        .content {
+            padding: 20px;
+        }
+        .sidebar {
+            height: 500px;
+            overflow-y: scroll;
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+        
+        .map-container {
+            height: 500px;
+        }
+        #marker-list{
+            font-size: medium;
+        }
+        #marker-list li {
+            cursor: pointer;
+            transition: .3s ease-in-out;
+        }
+        #marker-list li:hover {
+            background-color: #f1f1f1;
+        }
+        .map-wraper {
+            padding-left: 0;
+        }
+        .sidebar-wrapper {
+            padding-right: 0 !important;
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                height: auto;
+                max-height: 200px;
+            }
+            .sidebar-wrapper {
+                padding: 0 !important;
+            }
+            .map-wraper {
+                padding: 0 15px !important;
+            
+        }
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Dialog Demokratie</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#map">Karte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#research">Recherche Beiträge</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container content">
+        <section id="home" class="my-5">
+            <h2>Willkommen bei Dialogdemokratie</h2>
+            <p>Dies ist die Startseite des Projekts Dialogdemokratie.</p>
+        </section>
+        <section id="map-section" class="my-5">
+            <h2>Interaktive Karte</h2>
+            <div class="row">
+                <div class="col-md-3 sidebar-wrapper">
+                    <div class="sidebar">
+                        <ul id="marker-list" class="list-group">
+                            <!-- Dynamische Einträge werden hier hinzugefügt -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-9 map-wraper">
+                    <!-- Karte wird hier hinzugefügt -->
+                    <div id="map" class="map-container"></div>
+                </div>
+            </div>
+        </section>
+        <section id="research" class="my-5">
+            <h2>Recherche Beiträge</h2>
+            <p>Hier finden Sie eine Sammlung von Forschungsergebnissen und Beiträgen.</p>
+        </section>
+    </div>
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialisiere die Karte
+        var map = L.map('map').setView([51.1657, 10.4515], 6);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Beispielmarkierungen
+        var markers = [
+            { lat: 51.5, lng: -0.09, popup: 'Aktivist 1 <br> <i>in London</i>', id: '1' },
+            { lat: 48.8566, lng: 2.3522, popup: 'Aktivist 2 <br> <i>in Paris</i>', id: '2' },
+            { lat: 52.5200, lng: 13.4050, popup: 'Aktivist 4 <br> <i>in Berlin</i>', id: '4' },
+            { lat: 48.1351, lng: 11.5820, popup: 'Aktivist 5 <br> <i>in München</i>', id: '5' },
+            { lat: 50.9375, lng: 6.9603, popup: 'Aktivist 6 <br> <i>in Köln</i>', id: '6' },
+            { lat: 53.5511, lng: 9.9937, popup: 'Aktivist 7 <br> <i>in Hamburg</i>', id: '7' },
+            { lat: 51.2277, lng: 6.7735, popup: 'Aktivist 8 <br> <i>in Düsseldorf</i>', id: '8' },
+            { lat: 50.1109, lng: 8.6821, popup: 'Aktivist 9 <br> <i>in Frankfurt</i>', id: '9' }
+        ];
+
+        // Füge Markierungen zur Karte und zum Seitenmenü hinzu
+        markers.forEach(function(marker) {
+            var mark = L.marker([marker.lat, marker.lng]).addTo(map)
+                .bindPopup(marker.popup);
+            var listItem = document.createElement('li');
+            listItem.className = 'list-group-item';
+            listItem.innerHTML = marker.popup;
+            listItem.addEventListener('click', function() {
+                map.setView([marker.lat, marker.lng], 13);
+                mark.openPopup();
+            });
+            document.getElementById('marker-list').appendChild(listItem);
+        });
+    </script>
+</body>
+</html>

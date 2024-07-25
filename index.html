@@ -63,9 +63,12 @@
         </section>
     </div>
     <!-- jQuery, Popper.js, and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+    <script src="assets/js/jquery-3.5.1.slim.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script> -->
+    <script src="assets/js/popper.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    <script src="assets/js/bootstrap.min.js"></script>
     <!-- Leaflet JS -->
     <script src="assets/leaflet/leaflet.js"></script>
     <script>
@@ -90,15 +93,13 @@
 
         var markers = [
             // Heilbad Heiligenstadt
-            { lat: 51.3833, lng: 10.1333, popup: 'Aktivist 1 <br> <i>in Heilbad Heiligenstadt</i>', id: '1' },
+            { city: "Heilbad Heiligenstadt", lat: "51.3756186", lng: "10.138224", popup: 'Aktivist 1 <br> <i>in Heilbad Heiligenstadt</i>', id: '1' },
             // Münster
-            { lat: 51.9625, lng: 7.6255, popup: 'Aktivist 2 <br> <i>in Münster</i>', id: '2' },
+            { city: "Münster", lat: "51.9625101", lng: "7.6251879", popup: 'Aktivist 2 <br> <i>in Münster</i>', id: '2' },
         ]
 
-
-
-        // Füge Markierungen zur Karte und zum Seitenmenü hinzu
-        markers.forEach(function(marker) {
+        // callable function to add a marker to the map and sidebar
+        function addMarker(marker) {
             var mark = L.marker([marker.lat, marker.lng]).addTo(map)
                 .bindPopup(marker.popup);
             var listItem = document.createElement('li');
@@ -109,7 +110,24 @@
                 mark.openPopup();
             });
             document.getElementById('marker-list').appendChild(listItem);
+        }
+
+        // if marker does not have lat and lng properties, get coordinates from city name
+        markers.forEach(function(marker) {
+            if (!marker.lat && !marker.lng) {
+                fetch(`https://nominatim.openstreetmap.org/search.php?q=${marker.city}&format=json`)
+                    .then(response => response.json())
+                    .then(data => {
+                        marker.lat = data[0].lat;
+                        marker.lng = data[0].lon;
+                        console.log(marker);
+                        addMarker(marker);
+                    });
+            } else {
+                addMarker(marker);
+            }
         });
+
     </script>
 </body>
 </html>

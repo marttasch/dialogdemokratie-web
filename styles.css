@@ -10,10 +10,14 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 70px;
 }
 
 .container {
     padding-top: 70px !important;
+}
+.content {
+    padding: 20px;
 }
 
 .btn{
@@ -42,12 +46,10 @@ html {
     font-family: 'Staatliches', cursive;
     font-size: 1.5rem;
 }
-#map {
-    height: 500px;
-    width: 100%;
-}
-.content {
-    padding: 20px;
+
+
+.sidebar-wrapper {
+    padding-right: 0 !important;
 }
 .sidebar {
     height: 500px;
@@ -55,11 +57,38 @@ html {
     background-color: #f8f9fa;
     padding: 15px;
 }
-
-.map-container {
-    height: 500px;
+.sidebar-search-wrapper {
+    display: flex; /* Displays input and button side by side */
+    margin-bottom: 10px; /* Spacing between search bar and list */
+    width: 100%; /* Ensures search bar fills available space */
+    margin: 0 auto 5px;
 }
-#marker-list{
+#searchInput, #clearSearch {
+    height: 40px; /* Ensures input and button have the same height */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+#searchInput {
+    flex-grow: 1; /* Allows input to fill available space */
+    margin-right: 5px; /* Spacing between input and button */
+    width: 60%;
+}
+
+#clearSearch {
+    cursor: pointer; /* Changes cursor to pointer when hovering over button */
+    background-color: #f44336; /* Red background color */
+    color: white; /* White text color */
+    border: none; /* Removes border */
+    border-radius: 5px; /* Rounded corners to match input */
+    padding: 0 15px; /* Padding on the sides of the text */
+}
+
+#marker-list {
+    width: calc(100% - 0px); /* Adjust width as necessary */
+    max-width: 600px; /* Maximum width, adjust as necessary */
+    list-style-type: none; /* Removes bullet points */
+    padding: 0;
     font-size: medium;
 }
 #marker-list li {
@@ -69,12 +98,19 @@ html {
 #marker-list li:hover {
     background-color: #f1f1f1;
 }
-.map-wraper {
+
+
+.map-wrapper {
     padding-left: 0;
 }
-.sidebar-wrapper {
-    padding-right: 0 !important;
+.map-container {
+    height: 500px;
 }
+#map {
+    height: 500px;
+    width: 100%;
+}
+
 
 @media screen and (max-width: 768px) {
     .sidebar {
@@ -83,6 +119,7 @@ html {
     }
     .sidebar-wrapper {
         padding: 0 !important;
+        margin-bottom: 5px;
     }
     .map-wraper {
         padding: 0 15px !important;

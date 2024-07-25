@@ -12,6 +12,7 @@
  
 
     <link rel="stylesheet" href="styles.css" />
+
     
 </head>
 <body>
@@ -26,7 +27,7 @@
                     <a class="nav-link" href="#home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#map">Karte</a>
+                    <a class="nav-link" href="#map-sec">Karte</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#aktionsanleitung">Aktionsanleitung</a>
@@ -39,18 +40,23 @@
             <h2>Willkommen bei Dialog Demokratie</h2>
             <p>Wir von Dialog Demokratie möchten ein Gegenpol zur rechten Hetze der AfD sein und haben uns zur Aufgabe gemacht vor den Landtagswahlen im September 2024 noch möglichst viel Aufklärung zu betreiben.</p>
         </section>
-        <section id="map-section" class="my-5">
+
+        <section id="map-sec" class="my-5">
             <h2>Interaktive Karte</h2>
             <p>Finde Aktivisten in deiner Nähe und werde Teil der Bewegung.</p>
             <div class="row">
                 <div class="col-md-3 sidebar-wrapper">
                     <div class="sidebar">
+                        <div class="row sidebar-search-wrapper">
+                            <input type="text" id="searchInput" placeholder="Search activists..." onkeyup="filterMarkers()">
+                            <button id="clearSearch">X</button>
+                        </div>
                         <ul id="marker-list" class="list-group">
                             <!-- Dynamische Einträge werden hier hinzugefügt -->
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-9 map-wraper">
+                <div class="col-md-9 map-wrapper">
                     <!-- Karte wird hier hinzugefügt -->
                     <div id="map" class="map-container"></div>
                 </div>
@@ -62,6 +68,7 @@
             <a href="/aktionsanleitung/" class="btn">Aktionsanleitung herunterladen</a>
         </section>
     </div>
+
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
     <script src="assets/js/jquery-3.5.1.slim.min.js"></script>
@@ -71,63 +78,8 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Leaflet JS -->
     <script src="assets/leaflet/leaflet.js"></script>
-    <script>
-        // Initialisiere die Karte
-        var map = L.map('map').setView([51.1657, 10.4515], 6);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // // Beispielmarkierungen
-        // var markers = [
-        //     { lat: 51.5, lng: -0.09, popup: 'Aktivist 1 <br> <i>in London</i>', id: '1' },
-        //     { lat: 48.8566, lng: 2.3522, popup: 'Aktivist 2 <br> <i>in Paris</i>', id: '2' },
-        //     { lat: 52.5200, lng: 13.4050, popup: 'Aktivist 4 <br> <i>in Berlin</i>', id: '4' },
-        //     { lat: 48.1351, lng: 11.5820, popup: 'Aktivist 5 <br> <i>in München</i>', id: '5' },
-        //     { lat: 50.9375, lng: 6.9603, popup: 'Aktivist 6 <br> <i>in Köln</i>', id: '6' },
-        //     { lat: 53.5511, lng: 9.9937, popup: 'Aktivist 7 <br> <i>in Hamburg</i>', id: '7' },
-        //     { lat: 51.2277, lng: 6.7735, popup: 'Aktivist 8 <br> <i>in Düsseldorf</i>', id: '8' },
-        //     { lat: 50.1109, lng: 8.6821, popup: 'Aktivist 9 <br> <i>in Frankfurt</i>', id: '9' }
-        // ];
-
-        var markers = [
-            // Heilbad Heiligenstadt
-            { city: "Heilbad Heiligenstadt", lat: "51.3756186", lng: "10.138224", popup: 'Aktivist 1 <br> <i>in Heilbad Heiligenstadt</i>', id: '1' },
-            // Münster
-            { city: "Münster", lat: "51.9625101", lng: "7.6251879", popup: 'Aktivist 2 <br> <i>in Münster</i>', id: '2' },
-        ]
-
-        // callable function to add a marker to the map and sidebar
-        function addMarker(marker) {
-            var mark = L.marker([marker.lat, marker.lng]).addTo(map)
-                .bindPopup(marker.popup);
-            var listItem = document.createElement('li');
-            listItem.className = 'list-group-item';
-            listItem.innerHTML = marker.popup;
-            listItem.addEventListener('click', function() {
-                map.setView([marker.lat, marker.lng], 13);
-                mark.openPopup();
-            });
-            document.getElementById('marker-list').appendChild(listItem);
-        }
-
-        // if marker does not have lat and lng properties, get coordinates from city name
-        markers.forEach(function(marker) {
-            if (!marker.lat && !marker.lng) {
-                fetch(`https://nominatim.openstreetmap.org/search.php?q=${marker.city}&format=json`)
-                    .then(response => response.json())
-                    .then(data => {
-                        marker.lat = data[0].lat;
-                        marker.lng = data[0].lon;
-                        console.log(marker);
-                        addMarker(marker);
-                    });
-            } else {
-                addMarker(marker);
-            }
-        });
-
-    </script>
+    <!-- Custom JS -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

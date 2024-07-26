@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dialogdemokratie</title>
+    <title>Dialog Demokratie</title>
     <!-- Bootstrap CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/leaflet/leaflet.css" />
  
 
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
 
     
 </head>
@@ -38,17 +38,30 @@
     <div class="container content">
         <section id="home" class="my-5">
             <h2>Willkommen bei Dialog Demokratie</h2>
-            <p>Wir von Dialog Demokratie möchten ein Gegenpol zur rechten Hetze der AfD sein und haben uns zur Aufgabe gemacht vor den Landtagswahlen im September 2024 noch möglichst viel Aufklärung zu betreiben.</p>
+            <p>
+                Wir von Dialog Demokratie haben es uns zur Aufgabe gemacht, ein starker Gegenpol zur rechten Hetze der AfD zu sein. In einer Zeit, in der populistische und extremistische Tendenzen zunehmen, ist es wichtiger denn je, für die Werte der Demokratie einzutreten. Unser Ziel ist es, vor den Landtagswahlen im September 2024 so viele Menschen wie möglich aufzuklären und zu mobilisieren. Wir wollen nicht nur informieren, sondern auch aktiv dazu beitragen, eine offene und tolerante Gesellschaft zu fördern.
+            </p>
+            <h3>Unsere Mission</h3>
+            <p>
+                Wir möchten ein lebendiger und wirksamer Gegenpol zu den rechtsextremen Ideologien der AfD sein. Dazu gehört, Missverständnisse und Fehlinformationen zu korrigieren, Ängste abzubauen und die Vorteile einer pluralistischen Gesellschaft aufzuzeigen. Wir glauben fest daran, dass Aufklärung und Dialog die besten Mittel sind, um Vorurteilen und Hass entgegenzuwirken. Unsere Aktivitäten zielen darauf ab, Menschen zu ermutigen, sich selbst für Demokratie und Menschenrechte einzusetzen und somit gemeinsam eine starke, friedliche und gerechte Gesellschaft zu gestalten.
+            </p>
+
+            <h3>Aktionstag</h3>
+            <p>
+                Am 18. August 2024 veranstalten wir einen landesweiten Aktionstag. An diesem Tag rufen wir dazu auf, Flyer gegen Rechtsextremismus zu verteilen und aktiv das Gespräch mit den Menschen zu suchen. Diese Aktion bietet eine großartige Gelegenheit, gemeinsam gegen Hass und Intoleranz einzustehen und unsere Botschaft der Toleranz und Vielfalt zu verbreiten. Weitere Informationen und Materialien findest du in unserer <a href="#aktionsanleitung" >Aktionsanleitung</a>.
+            </p>
         </section>
 
         <section id="map-sec" class="my-5">
-            <h2>Interaktive Karte</h2>
-            <p>Finde Aktivisten in deiner Nähe und werde Teil der Bewegung.</p>
+            <h2>Initiativen vor Ort</h2>
+            <b>Werde Teil der Bewegung</b>
+            <p>Alleine kann man nicht viel erreichen, aber gemeinsam sind wir stark. Unsere Karte zeigt dir, in welchen Regionen sich bereits Menschen engagieren und sich gegen Rechtsextremismus einsetzen. <br>
+            Möchtest du dich anschließen, oder bist du bereits aktiv und möchtest auch einen Eintrag auf der Karte? Dann melde dich bei uns: <a href="mailto:info@dialogdemokratie.de">info@dialogdemokratie.de</a></p>
             <div class="row">
                 <div class="col-md-3 sidebar-wrapper">
                     <div class="sidebar">
                         <div class="row sidebar-search-wrapper">
-                            <input type="text" id="searchInput" placeholder="Search activists..." onkeyup="filterMarkers()">
+                            <input type="text" id="searchInput" placeholder="Suche..." onkeyup="filterMarkers()">
                             <button id="clearSearch">X</button>
                         </div>
                         <ul id="marker-list" class="list-group">
@@ -64,10 +77,27 @@
         </section>
         <section id="aktionsanleitung" class="my-5">
             <h2>Aktionsanleitung</h2>
-            <p>Jeder ist dazu aufgerufen sich für die Demokratie und gegen Rechtsextremismus einzusetzen. In unserer Aktionsanleitung zeigen wir dir, was du konkret tun kannst. Als eines der effektivsten Mittel sehen wir es Flyer zu verteilen.</p>
-            <a href="/aktionsanleitung/" class="btn">Aktionsanleitung herunterladen</a>
+            <p>Jeder ist dazu aufgerufen sich für die Demokratie und gegen Rechtsextremismus einzusetzen. In unserer Aktionsanleitung zeigen wir dir, was du konkret tun kannst. Als eines der effektivsten Mittel sehen wir es aufklärende Flyer zu verteilen.</p>
+            
+            <a href="/aktionsanleitung/" class="btn">
+                <iconify-icon icon="ant-design:file-pdf-twotone" width="1.6rem" height="1.6rem" style="color: white"></iconify-icon>
+                <span>Aktionsanleitung herunterladen</span>
+            </a>
+
         </section>
     </div>
+
+    <style>
+        .pdf-container {
+            width: 100%;
+            height: 100%;
+        }
+        embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
@@ -78,8 +108,15 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Leaflet JS -->
     <script src="assets/leaflet/leaflet.js"></script>
+    <!-- Iconify -->
+    <!-- <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script> -->
+    <script src="assets/js/iconify-icon.min.js"></script>
 
     <!-- Custom JS -->
     <script src="assets/js/main.js"></script>
 </body>
+<footer class="text-center my-4">
+    <p>© 2024 Dialog Demokratie. All rights reserved.</p>
+    <a href="/impressum/">Impressum</a>
+</footer>
 </html>

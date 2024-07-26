@@ -64,9 +64,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var markers = [
     // Heilbad Heiligenstadt
-    { city: "Heilbad Heiligenstadt", lat: "51.3756186", lng: "10.138224", popup: 'Aktivist 1 <br> <i>in Heilbad Heiligenstadt</i>', id: '1' },
+    { city: "Heilbad Heiligenstadt", lat: "51.3756186", lng: "10.138224", popup: 'Dialog Demokratie <br> <i>im Eichsfeld</i>', id: '1' },
     // Münster
-    { city: "Münster", lat: "51.9625101", lng: "7.6251879", popup: 'Aktivist 2 <br> <i>in Münster</i>', id: '2' },
+    { city: "Münster", lat: "51.9625101", lng: "7.6251879", popup: 'Dialog Demokratie <br> <i>in Münster</i>', id: '2' },
 ]
 
 // callable function to add a marker to the map and sidebar
